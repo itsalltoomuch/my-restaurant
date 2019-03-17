@@ -5,7 +5,7 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-@Database(entities = {Restaurant.class, Booking.class, Meal.class, Dish.class}, version = 1, exportSchema = false)
+@Database(entities = {Restaurant.class, Booking.class, Meal.class, Dish.class}, version = 2, exportSchema = false)
 public abstract class MyAppDatabase extends RoomDatabase {
 
     public abstract RestaurantDao restaurantDao();

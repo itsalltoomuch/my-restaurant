@@ -32,12 +32,24 @@
         android:layout_marginTop="90dp"
         android:ems="10"
         android:labelFor="@+id/enter_the_time"
+        android:layout_centerHorizontal="true"
         android:text="@string/enter_time"
         android:inputType="time" />
 
+    <EditText
+        android:id="@+id/the_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:ems="10"
+        android:labelFor="@+id/enter_the_date"
+        android:layout_centerHorizontal="true"
+        android:text="@string/enter_date"
+        android:inputType="date" />
+
     <Button
         android:id="@+id/button_save"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="220dp"
         android:layout_width="190dp"
         android:layout_height="60dp"
         android:layout_below="@+id/commentary_text_form"

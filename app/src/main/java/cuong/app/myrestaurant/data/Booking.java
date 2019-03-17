@@ -21,8 +21,7 @@ public class Booking {
     @ColumnInfo (name = "time")
     private String time;
 
-    public Booking(int id, @NonNull String restaurantId, @NonNull String date, @NonNull String time) {
-        this.id = id;
+    public Booking(@NonNull String restaurantId, @NonNull String date, @NonNull String time) {
         this.restaurantId = restaurantId;
         this.date = date;
         this.time = time;
@@ -32,6 +31,7 @@ public class Booking {
         return id;
     }
 
+    public void setId (int id) { this.id = id; }
     @NonNull
     public String getRestaurantId() {
         return restaurantId;
@@ -46,7 +46,7 @@ public class Booking {
         return date;
     }
 
-    public void setDate(@NonNull String date) {
+    public void setTheDate(@NonNull String date) {
         this.date = date;
     }
 
@@ -55,7 +55,7 @@ public class Booking {
         return time;
     }
 
-    public void setTime(@NonNull String time) {
+    public void setTheTime(@NonNull String time) {
         this.time = time;
     }
 }

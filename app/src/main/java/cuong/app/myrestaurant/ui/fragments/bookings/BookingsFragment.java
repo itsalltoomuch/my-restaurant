@@ -16,16 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
-
 import cuong.app.myrestaurant.R;
 import cuong.app.myrestaurant.data.Booking;
-import cuong.app.myrestaurant.data.Restaurant;
 import cuong.app.myrestaurant.ui.DataCommunication;
 import cuong.app.myrestaurant.ui.adapter.BookingListAdapter;
-import cuong.app.myrestaurant.ui.adapter.RestaurantListAdapter;
-import cuong.app.myrestaurant.ui.fragments.restaurants.AddRestaurantFragment;
 import cuong.app.myrestaurant.viewmodel.BookingViewModel;
-import cuong.app.myrestaurant.viewmodel.RestaurantViewModel;
 
 public class BookingsFragment extends Fragment {
 

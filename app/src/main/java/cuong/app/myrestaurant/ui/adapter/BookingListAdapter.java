@@ -15,11 +15,9 @@ import java.util.List;
 
 import cuong.app.myrestaurant.R;
 import cuong.app.myrestaurant.data.Booking;
-import cuong.app.myrestaurant.data.Restaurant;
-import cuong.app.myrestaurant.ui.HowGoodWasTheRestaurantDescriptor;
+
 import cuong.app.myrestaurant.ui.MainActivity;
 import cuong.app.myrestaurant.ui.fragments.bookings.SelectedBookingFragment;
-import cuong.app.myrestaurant.ui.fragments.restaurants.SelectedRestaurantViewFragment;
 
 public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.BookingViewHolder> {
 
@@ -34,6 +32,7 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
             tvBookingId = itemView.findViewById(R.id.tv_booking_id);
             tvDate = itemView.findViewById(R.id.tv_date);
             tvTime = itemView.findViewById(R.id.tv_time);
+            selected_item = itemView.findViewById(R.id.select_restaurant);
         }
     }
 

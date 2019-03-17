@@ -9,17 +9,16 @@ import java.util.List;
 
 import cuong.app.myrestaurant.data.Booking;
 import cuong.app.myrestaurant.data.BookingsRepository;
-import cuong.app.myrestaurant.data.Restaurant;
 
 public class BookingViewModel extends AndroidViewModel {
 
-    private BookingsRepository mRepository;
+    private BookingsRepository mBookingRepository;
     private LiveData<List<Booking>> mAllBooking;
 
     public BookingViewModel(@NonNull Application application) {
         super(application);
-        mRepository = new BookingsRepository(application);
-        mAllBooking = mRepository.getAllBookings();
+        mBookingRepository = new BookingsRepository(application);
+        mAllBooking = mBookingRepository.getAllBookings();
     }
 
     public LiveData<List<Booking>> getAllBooking() {
