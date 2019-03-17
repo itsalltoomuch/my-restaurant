@@ -75,7 +75,7 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
     public void onBindViewHolder(BookingViewHolder holder, final int position) {
         if (mBookings != null) {
             Booking current = mBookings.get(position);
-            holder.tvBookingId.setText(current.getId());
+            holder.tvBookingId.setText(current.getRestaurantId());
             holder.tvDate.setText(current.getDate());
             holder.tvTime.setText(current.getTime());
 

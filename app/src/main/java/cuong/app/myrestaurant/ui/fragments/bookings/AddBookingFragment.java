@@ -26,7 +26,7 @@ import cuong.app.myrestaurant.ui.DataCommunication;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddBookingFragment extends Fragment{
+public class AddBookingFragment extends Fragment implements View.OnClickListener {
 
     DataCommunication mCallback;
     private Button addBookingButton;
@@ -57,36 +57,34 @@ public class AddBookingFragment extends Fragment{
         BookingName = addBookingView.findViewById(R.id.booking_name_form);
         time = addBookingView.findViewById(R.id.the_time);
         date = addBookingView.findViewById(R.id.the_date);
-        addBookingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resName = BookingName.getText().toString().trim();
-                resTime = time.getText().toString().trim();
-                resDate = date.getText().toString().trim();
-
-                if (resName.equals("") || resTime.equals("") || resDate.equals("")) {
-                    showAlert();
-                } else {
-                    mCallback.setBookName(resName);
-                    mCallback.setTheTime(resTime);
-                    mCallback.setTheDate(resDate);
-
-
-
-                }
-                new SaveToDatabaseAsync().execute();
-
-                BookingsFragment bookingsFragment = new BookingsFragment();
-                FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction2.replace(R.id.fragment_container_home, bookingsFragment);
-                fragmentTransaction2.addToBackStack(null);
-                fragmentTransaction2.commit();
-                Toast.makeText(getContext(),"Added successfully", Toast.LENGTH_SHORT).show();
-                addBookingButton.setEnabled(false);
-            }
-        });
-
+        addBookingButton.setOnClickListener(this);
         return addBookingView;
+    }
+    @Override
+    public void onClick(View view) {
+        resName = BookingName.getText().toString().trim();
+        resTime = time.getText().toString().trim();
+        resDate = date.getText().toString().trim();
+
+        if (resName.equals("") || resTime.equals("") || resDate.equals("")) {
+            showAlert();
+        } else {
+            mCallback.setBookName(resName);
+            mCallback.setTheTime(resTime);
+            mCallback.setTheDate(resDate);
+
+
+
+        }
+        new SaveToDatabaseAsync().execute();
+
+        BookingsFragment bookingsFragment = new BookingsFragment();
+        FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction2.replace(R.id.fragment_container_home, bookingsFragment);
+        fragmentTransaction2.addToBackStack(null);
+        fragmentTransaction2.commit();
+        Toast.makeText(getContext(),"Added successfully", Toast.LENGTH_SHORT).show();
+        addBookingButton.setEnabled(false);
     }
 
 
@@ -104,7 +102,7 @@ public class AddBookingFragment extends Fragment{
     }
     private class SaveToDatabaseAsync extends AsyncTask<Object, Void, List<Booking>> {
 
-        private String resName = mCallback.getResName();
+        private String resName = mCallback.getBookName();
         private String resDate = mCallback.getTheDate();
         private String resTime = mCallback.getTheTime();
 
