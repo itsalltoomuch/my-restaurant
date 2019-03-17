@@ -58,7 +58,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
-        LatLng Cracow = new LatLng(50.049683, 19.944544);
+        LatLng Cracow = new LatLng(52.489471, -1.898575);
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Cracow, 12));
 
         resListAdapter = mCallback.getRestaurantListAdapter();
