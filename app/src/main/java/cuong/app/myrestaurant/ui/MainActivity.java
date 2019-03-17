@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity
         implements BottomNavigationView.OnNavigationItemSelectedListener, DataCommunication {
 
 
-    private String resName, howGood, commentary, latitude, longitude;
+    private String resName, howGood, commentary, latitude, longitude, resTime;
     private RestaurantListAdapter restaurantListAdapter;
     private BookingListAdapter bookingListAdapter;
     private MealListAdapter mealListAdapter;
@@ -79,6 +79,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public String getResTime() { return resTime; }
+
+    @Override
     public String getHowGood() {
         return howGood;
     }
@@ -117,6 +120,9 @@ public class MainActivity extends AppCompatActivity
     public void setResName(String name) {
         this.resName = name;
     }
+
+    @Override
+    public void setTheTime(String time) { this.resTime = time; }
 
     @Override
     public void setHowGood(String howGood) {
