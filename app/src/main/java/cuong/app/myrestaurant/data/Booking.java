@@ -20,11 +20,15 @@ public class Booking {
     @NonNull
     @ColumnInfo (name = "time")
     private String time;
+    @NonNull
+    @ColumnInfo (name = "address")
+    private String address;
 
-    public Booking(@NonNull String restaurantId, @NonNull String date, @NonNull String time) {
+    public Booking(@NonNull String restaurantId, @NonNull String date, @NonNull String time, @NonNull String address) {
         this.restaurantId = restaurantId;
         this.date = date;
         this.time = time;
+        this.address = address;
     }
 
     public int getId() {
@@ -58,4 +62,8 @@ public class Booking {
     public void setTheTime(@NonNull String time) {
         this.time = time;
     }
+    @NonNull
+    public String getAddress() { return address;}
+
+    public void setTheAddress(@NonNull String address) {this.address = address; }
 }

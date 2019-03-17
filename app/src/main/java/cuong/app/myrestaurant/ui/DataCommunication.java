@@ -7,6 +7,7 @@ import cuong.app.myrestaurant.ui.adapter.RestaurantListAdapter;
 public interface DataCommunication {
 
      String getResName();
+     String getAddress();
      String getBookName();
      String getTheTime();
      String getHowGood();
@@ -27,6 +28,7 @@ public interface DataCommunication {
      void setRestaurantListAdapter(RestaurantListAdapter restaurantListAdapter);
      void setTheTime(String time);
      void setTheDate(String date);
+     void setTheAddress (String address);
 
      void setBookingListAdapter(BookingListAdapter adapter);
 }

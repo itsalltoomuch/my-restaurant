@@ -47,9 +47,30 @@
         android:text="@string/enter_date"
         android:inputType="date" />
 
+    <TextView
+        android:id="@+id/the_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="220dp"
+        android:labelFor="@+id/restaurant_name_form"
+        android:text="@string/form_enter_restaurant_postcode" />
+
+    <EditText
+        android:id="@+id/booking_address_form"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_below="@+id/enter_restaurant_postcode"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="210dp"
+        android:ems="10"
+        android:inputType="textCapSentences|textAutoCorrect" />
+
+
     <Button
         android:id="@+id/button_save"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="300dp"
         android:layout_width="190dp"
         android:layout_height="60dp"
         android:layout_below="@+id/commentary_text_form"

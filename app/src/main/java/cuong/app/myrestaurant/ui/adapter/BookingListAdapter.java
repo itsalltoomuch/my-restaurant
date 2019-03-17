@@ -11,12 +11,15 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import cuong.app.myrestaurant.R;
 import cuong.app.myrestaurant.data.Booking;
 
 import cuong.app.myrestaurant.ui.MainActivity;
+
 import cuong.app.myrestaurant.ui.fragments.bookings.SelectedBookingFragment;
 
 public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.BookingViewHolder> {
@@ -25,6 +28,7 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
         private final TextView tvBookingId;
         private final TextView tvDate;
         private final TextView tvTime;
+        private final TextView tvAddress;
         private ImageButton selected_item;
 
         private BookingViewHolder(View itemView) {
@@ -32,6 +36,7 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
             tvBookingId = itemView.findViewById(R.id.tv_booking_id);
             tvDate = itemView.findViewById(R.id.tv_date);
             tvTime = itemView.findViewById(R.id.tv_time);
+            tvAddress = itemView.findViewById(R.id.tv_address);
             selected_item = itemView.findViewById(R.id.select_restaurant);
         }
     }
@@ -78,6 +83,7 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
             holder.tvBookingId.setText(current.getRestaurantId());
             holder.tvDate.setText(current.getDate());
             holder.tvTime.setText(current.getTime());
+            holder.tvAddress.setText(current.getAddress());
 
         } else {
             holder.tvBookingId.setText("");
@@ -89,7 +95,7 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
         notifyDataSetChanged();
     }
 
-    public List<Booking> getBookings() {
+    public List<Booking> getmBookings() {
         return mBookings;
     }
 

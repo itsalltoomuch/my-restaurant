@@ -1,66 +1,100 @@
 package cuong.app.myrestaurant.ui.fragments.bookings;
 
-
+import android.content.Context;
+import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.google.android.gms.maps.SupportMapFragment;
+import java.util.List;
 
 import cuong.app.myrestaurant.R;
+import cuong.app.myrestaurant.data.Booking;
+import cuong.app.myrestaurant.data.MyAppDatabase;
+import cuong.app.myrestaurant.ui.DataCommunication;
+import cuong.app.myrestaurant.ui.adapter.BookingListAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SelectedBookingFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class SelectedBookingFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class SelectedBookingFragment extends Fragment  {
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-
-    public SelectedBookingFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SelectedBookingFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SelectedBookingFragment newInstance(String param1, String param2) {
-        SelectedBookingFragment fragment = new SelectedBookingFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    DataCommunication mCallback;
+    private TextView restaurantName, date, time, address;
+    private ImageButton deleteButton;
+    private int position;
+    BookingListAdapter resListAdapter;
+    List<Booking> listOfBookings;
+    Booking selectedBooking;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mCallback = (DataCommunication) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement DataCommunication");
         }
     }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_selected_booking, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View selectedBookView = inflater.inflate(R.layout.fragment_selected_booking, null);
+        restaurantName = selectedBookView.findViewById(R.id.book_restaurant);
+        date = selectedBookView.findViewById(R.id.booking_date);
+        time = selectedBookView.findViewById(R.id.booking_time);
+        address = selectedBookView.findViewById(R.id.restaurant_address);
+        deleteButton = selectedBookView.findViewById(R.id.delete_button);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DeleteFromDBAsync().execute();
+                changeFragmentToHome();
+                Toast.makeText(getContext(),"Deleted successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Bundle selectedResPositionBundle = getArguments();
+        position = selectedResPositionBundle.getInt("positionClicked");
+        resListAdapter = mCallback.getBookingListAdapter();
+        listOfBookings = resListAdapter.getmBookings();
+
+        selectedBooking = listOfBookings.get(position);
+        restaurantName.setText(selectedBooking.getRestaurantId());
+        date.setText(selectedBooking.getDate());
+        time.setText(selectedBooking.getTime());
+        address.setText(selectedBooking.getAddress());
+
+
+
+        return selectedBookView;
+
     }
 
+
+
+    public void changeFragmentToHome() {
+        BookingsFragment bookingsFragment = new BookingsFragment();
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container_home, bookingsFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private class DeleteFromDBAsync extends AsyncTask<Object, Void, List<Booking>> {
+
+        @Override
+        protected List<Booking> doInBackground(Object... params) {
+            MyAppDatabase.getDatabase(getContext()).bookingDao().deleteBooking(selectedBooking);
+            return null;
+        }
+    }
 }

@@ -21,6 +21,8 @@
     <string name="save">SAVE</string>
     <string name="enter_time">Time</string>
     <string name="enter_date">Date</string>
+    <string name="enter_address">Address</string>
+    <string name="form_enter_restaurant_postcode">Enter restaurant postcode</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

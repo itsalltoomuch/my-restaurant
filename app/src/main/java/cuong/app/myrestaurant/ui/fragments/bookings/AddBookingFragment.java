@@ -33,9 +33,11 @@ public class AddBookingFragment extends Fragment implements View.OnClickListener
     private EditText BookingName;
     private EditText time;
     private EditText date;
+    private EditText address;
     private String resName;
     private String resDate;
     private String resTime;
+    private String resAddress;
 
     @Override
     public void onAttach(Context context) {
@@ -57,6 +59,7 @@ public class AddBookingFragment extends Fragment implements View.OnClickListener
         BookingName = addBookingView.findViewById(R.id.booking_name_form);
         time = addBookingView.findViewById(R.id.the_time);
         date = addBookingView.findViewById(R.id.the_date);
+        address = addBookingView.findViewById(R.id.booking_address_form);
         addBookingButton.setOnClickListener(this);
         return addBookingView;
     }
@@ -65,13 +68,15 @@ public class AddBookingFragment extends Fragment implements View.OnClickListener
         resName = BookingName.getText().toString().trim();
         resTime = time.getText().toString().trim();
         resDate = date.getText().toString().trim();
+        resAddress = address.getText().toString().trim();
 
-        if (resName.equals("") || resTime.equals("") || resDate.equals("")) {
+        if (resName.equals("") || resTime.equals("") || resDate.equals("") || resAddress.equals("")) {
             showAlert();
         } else {
             mCallback.setBookName(resName);
             mCallback.setTheTime(resTime);
             mCallback.setTheDate(resDate);
+            mCallback.setTheAddress(resAddress);
 
 
 
@@ -105,11 +110,12 @@ public class AddBookingFragment extends Fragment implements View.OnClickListener
         private String resName = mCallback.getBookName();
         private String resDate = mCallback.getTheDate();
         private String resTime = mCallback.getTheTime();
+        private String resAddress = mCallback.getAddress();
 
 
         @Override
         protected List<Booking> doInBackground(Object... params) {
-            Booking booking = new Booking(resName, resDate, resTime);
+            Booking booking = new Booking(resName, resDate, resTime, resAddress);
             MyAppDatabase.getDatabase(getContext()).bookingDao().insert(booking);
             return null;
         }
