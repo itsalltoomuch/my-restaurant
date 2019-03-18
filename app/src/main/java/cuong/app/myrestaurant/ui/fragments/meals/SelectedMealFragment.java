@@ -1,7 +1,6 @@
-package cuong.app.myrestaurant.ui.fragments.bookings;
+package cuong.app.myrestaurant.ui.fragments.meals;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,20 +16,20 @@ import android.widget.Toast;
 import java.util.List;
 
 import cuong.app.myrestaurant.R;
-import cuong.app.myrestaurant.data.Booking;
+import cuong.app.myrestaurant.data.Meal;
 import cuong.app.myrestaurant.data.MyAppDatabase;
 import cuong.app.myrestaurant.ui.DataCommunication;
-import cuong.app.myrestaurant.ui.adapter.BookingListAdapter;
+import cuong.app.myrestaurant.ui.adapter.MealListAdapter;
 
-public class SelectedBookingFragment extends Fragment  {
+public class SelectedMealFragment extends Fragment  {
 
     DataCommunication mCallback;
-    private TextView restaurantName, date, time, address;
+    private TextView mealName, mealPrice, mealPlace;
     private ImageButton deleteButton;
     private int position;
-    BookingListAdapter resListAdapter;
-    List<Booking> listOfBookings;
-    Booking selectedBooking;
+    MealListAdapter mealListAdapter;
+    List<Meal> listOfMeals;
+    Meal selectedMeal;
 
     @Override
     public void onAttach(Context context) {
@@ -46,11 +45,10 @@ public class SelectedBookingFragment extends Fragment  {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View selectedBookView = inflater.inflate(R.layout.fragment_selected_booking, null);
-        restaurantName = selectedBookView.findViewById(R.id.book_restaurant);
-        date = selectedBookView.findViewById(R.id.booking_date);
-        time = selectedBookView.findViewById(R.id.booking_time);
-        address = selectedBookView.findViewById(R.id.restaurant_address);
+        View selectedBookView = inflater.inflate(R.layout.fragment_selected_meal, null);
+        mealName = selectedBookView.findViewById(R.id.meal_name);
+        mealPrice = selectedBookView.findViewById(R.id.meal_price);
+        mealPlace = selectedBookView.findViewById(R.id.restaurant_address);
         deleteButton = selectedBookView.findViewById(R.id.delete_button);
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,14 +61,13 @@ public class SelectedBookingFragment extends Fragment  {
 
         Bundle selectedResPositionBundle = getArguments();
         position = selectedResPositionBundle.getInt("positionClicked");
-        resListAdapter = mCallback.getBookingListAdapter();
-        listOfBookings = resListAdapter.getmBookings();
+        mealListAdapter = mCallback.getMealListAdapter();
+        listOfMeals = mealListAdapter.getmMeal();
 
-        selectedBooking = listOfBookings.get(position);
-        restaurantName.setText(selectedBooking.getRestaurantId());
-        date.setText(selectedBooking.getDate());
-        time.setText(selectedBooking.getTime());
-        address.setText(selectedBooking.getAddress());
+        selectedMeal = listOfMeals.get(position);
+        mealName.setText(selectedMeal.getMealName());
+        mealPlace.setText(selectedMeal.getMealPlace());
+        mealPrice.setText(selectedMeal.getPrice());
 
 
 
@@ -81,18 +78,18 @@ public class SelectedBookingFragment extends Fragment  {
 
 
     public void changeFragmentToHome() {
-        BookingsFragment bookingsFragment = new BookingsFragment();
+        MealsFragment mealsFragment = new MealsFragment();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container_home, bookingsFragment);
+        fragmentTransaction.replace(R.id.fragment_container_home, mealsFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
-    private class DeleteFromDBAsync extends AsyncTask<Object, Void, List<Booking>> {
+    private class DeleteFromDBAsync extends AsyncTask<Object, Void, List<Meal>> {
 
         @Override
-        protected List<Booking> doInBackground(Object... params) {
-            MyAppDatabase.getDatabase(getContext()).bookingDao().deleteBooking(selectedBooking);
+        protected List<Meal> doInBackground(Object... params) {
+            MyAppDatabase.getDatabase(getContext()).mealDao().deleteMeal(selectedMeal);
             return null;
         }
     }

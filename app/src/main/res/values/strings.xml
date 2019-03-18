@@ -5,7 +5,9 @@
     <string name="title_add">Add</string>
 
     <string name="form_enter_restaurant_name">Enter restaurant name:</string>
+    <string name="form_enter_dish_name">Enter Dish name</string>
     <string name="form_choose_satisfacion">How good was the restaurant?</string>
+    <string name="form_choose_quality">How good was the meal</string>
     <string name="very_good">Very good!</string>
     <string name="ok">OK, but could be better</string>
     <string name="dont_want_to_go_there_anymore">I don\'t want to go there anymore</string>
@@ -23,6 +25,11 @@
     <string name="enter_date">Date</string>
     <string name="enter_address">Address</string>
     <string name="form_enter_restaurant_postcode">Enter restaurant postcode</string>
+    <string name="place_have_the_meal">Place you had meal</string>
+    <string name="really_bad">Very bad meal</string>
+    <string name="meal_price">Price of the meal</string>
+    <string name="enter_the_book_time">Time</string>
+    <string name="enter_the_book_date">The Date</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -6,7 +6,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,15 +18,16 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import cuong.app.myrestaurant.R;
-import cuong.app.myrestaurant.data.Restaurant;
+import cuong.app.myrestaurant.data.Meal;
 import cuong.app.myrestaurant.ui.DataCommunication;
-import cuong.app.myrestaurant.ui.adapter.RestaurantListAdapter;
-import cuong.app.myrestaurant.viewmodel.RestaurantViewModel;
+import cuong.app.myrestaurant.ui.adapter.MealListAdapter;
+import cuong.app.myrestaurant.viewmodel.MealViewModel;
 
 public class MealsFragment extends Fragment {
 
     DataCommunication mCallback;
-    private RestaurantViewModel mRestaurantViewModel;
+    private MealViewModel mealViewModel;
+    private FloatingActionButton btnAddNew;
 
     @Override
     public void onAttach(Context context) {
@@ -41,24 +44,38 @@ public class MealsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View browseRestaurantList = inflater.inflate(R.layout.fragment_restaurants, null);
+        View browseMealList = inflater.inflate(R.layout.fragment_meal, null);
 
-        RecyclerView recyclerView = browseRestaurantList.findViewById(R.id.recyclerview);
-        final RestaurantListAdapter adapter = new RestaurantListAdapter(this.getContext());
+        RecyclerView recyclerView = browseMealList.findViewById(R.id.recyclerview);
+        final MealListAdapter adapter = new MealListAdapter(this.getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        mRestaurantViewModel = ViewModelProviders.of(this).get(RestaurantViewModel.class);
+        mealViewModel = ViewModelProviders.of(this).get(MealViewModel.class);
 
-        mRestaurantViewModel.getmAllRes().observe(this, new Observer<List<Restaurant>>() {
+        mealViewModel.getAllMeals().observe(this, new Observer<List<Meal>>() {
             @Override
-            public void onChanged(@Nullable final List<Restaurant> restaurants) {
-                adapter.setRestaurants(restaurants);
+            public void onChanged(@Nullable final List<Meal> meals) {
+                adapter.setMeals(meals);
             }
         });
-        mCallback.setRestaurantListAdapter(adapter);
+        mCallback.setMealListAdapter(adapter);
+        btnAddNew = browseMealList.findViewById(R.id.btn_add);
+        btnAddNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAddNewInterface();
+            }
+        });
 
-        return browseRestaurantList;
+        return browseMealList;
 
+    }
+    private void showAddNewInterface() {
+        AddMealFragment addMealFragment = new AddMealFragment();
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container_home, addMealFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

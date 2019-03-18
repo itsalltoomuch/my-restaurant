@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity
         implements BottomNavigationView.OnNavigationItemSelectedListener, DataCommunication {
 
 
-    private String resName, howGood, commentary, latitude, longitude, resTime, resDate, bookName, resAddress;
+    private String resName, howGood, commentary, latitude, longitude, resTime, resDate, bookName, resAddress, mName, mPrice, mRating, mComment, mPlace;
     private RestaurantListAdapter restaurantListAdapter;
     private BookingListAdapter bookingListAdapter;
     private MealListAdapter mealListAdapter;
@@ -77,6 +77,21 @@ public class MainActivity extends AppCompatActivity
     public String getResName() {
         return resName;
     }
+
+    @Override
+    public String getMealName() { return mName; }
+
+    @Override
+    public String getRating() { return mRating; }
+
+    @Override
+    public String getMealComment() { return mComment; }
+
+    @Override
+    public String getPrice() { return mPrice; }
+
+    @Override
+    public String getPlace() { return mPlace; }
 
     @Override
     public String getAddress() { return resAddress; }
@@ -140,6 +155,21 @@ public class MainActivity extends AppCompatActivity
     public void setTheTime(String time) { this.resTime = time; }
 
     @Override
+    public void setMealName(String mealname) { this.mName = mealname; }
+
+    @Override
+    public void setPlace(String mealplace) { this.mPlace = mealplace; }
+
+    @Override
+    public void setPrice(String mealprice) { this.mPrice = mealprice; }
+
+    @Override
+    public void setRating(String rating) { this.mRating = rating; }
+
+    @Override
+    public void setMealComment(String comment) { this.mComment = comment; }
+
+    @Override
     public void setTheAddress (String address) { this.resAddress = address; }
 
     @Override
@@ -170,5 +200,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void setBookingListAdapter(BookingListAdapter adapter) {
         this.bookingListAdapter = adapter;
+    }
+
+    @Override
+    public void setMealListAdapter(MealListAdapter mealListAdapter) {
+        this.mealListAdapter = mealListAdapter;
     }
 }

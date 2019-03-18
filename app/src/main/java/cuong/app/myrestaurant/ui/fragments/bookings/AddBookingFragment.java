@@ -77,9 +77,6 @@ public class AddBookingFragment extends Fragment implements View.OnClickListener
             mCallback.setTheTime(resTime);
             mCallback.setTheDate(resDate);
             mCallback.setTheAddress(resAddress);
-
-
-
         }
         new SaveToDatabaseAsync().execute();
 

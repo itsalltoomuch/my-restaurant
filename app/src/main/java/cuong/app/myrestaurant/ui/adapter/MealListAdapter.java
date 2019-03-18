@@ -11,33 +11,42 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import cuong.app.myrestaurant.R;
-import cuong.app.myrestaurant.data.Restaurant;
-import cuong.app.myrestaurant.ui.HowGoodWasTheRestaurantDescriptor;
+import cuong.app.myrestaurant.data.Meal;
+
+import cuong.app.myrestaurant.ui.HowGoodWasTheMealDescriptor;
 import cuong.app.myrestaurant.ui.MainActivity;
-import cuong.app.myrestaurant.ui.fragments.restaurants.SelectedRestaurantViewFragment;
 
-public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.RestaurantViewHolder> {
+import cuong.app.myrestaurant.ui.fragments.meals.SelectedMealFragment;
 
-    class RestaurantViewHolder extends RecyclerView.ViewHolder {
-        private final TextView nameItemView;
-        private final TextView howGoodItemView;
-        private final TextView commentaryItemView;
+public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MealViewHolder> {
+
+    class MealViewHolder extends RecyclerView.ViewHolder {
+        private final TextView mealId;
+        private final TextView mealPrice;
+        private final TextView mealPlace;
+        private final TextView howGoodMealView;
+        private final TextView commentaryMealView;
         private ImageButton selected_item;
 
-        private RestaurantViewHolder(View itemView) {
+        private MealViewHolder(View itemView) {
             super(itemView);
-            nameItemView = itemView.findViewById(R.id.txtRestaurantName);
-            howGoodItemView = itemView.findViewById(R.id.txtRestaurantEvaluation);
-            commentaryItemView = itemView.findViewById(R.id.txtRestaurantCommentary);
+            mealId = itemView.findViewById(R.id.dish_name);
+            mealPrice = itemView.findViewById(R.id.price);
+            mealPlace = itemView.findViewById(R.id.address);
+            howGoodMealView = itemView.findViewById(R.id.mealevaluation);
+            commentaryMealView = itemView.findViewById(R.id.mealcomment);
+
             selected_item = itemView.findViewById(R.id.select_restaurant);
         }
     }
 
     private final LayoutInflater mInflater;
-    private List<Restaurant> mRestaurants; // Cached copy of words
+    private List<Meal> mMeal;
     private Context mContext;
     private int adapterPosition;
 
@@ -47,9 +56,9 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.Restau
     }
 
     @Override
-    public RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(mContext).inflate(R.layout.recyclerview_item, parent, false);
-        final RestaurantViewHolder rHolder = new RestaurantViewHolder(itemView);
+    public MealViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(mContext).inflate(R.layout.layout_meal_item, parent, false);
+        final MealViewHolder rHolder = new MealViewHolder(itemView);
 
         rHolder.selected_item.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,11 +66,12 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.Restau
                 adapterPosition = rHolder.getAdapterPosition();
                 Bundle adapterPositionBundle = new Bundle();
                 adapterPositionBundle.putInt("positionClicked", adapterPosition);
-                SelectedRestaurantViewFragment selectedRestaurantViewFragment = new SelectedRestaurantViewFragment();
+
+                SelectedMealFragment selectedMealFragmente = new SelectedMealFragment();
                 MainActivity myActivity = (MainActivity)mContext;
                 FragmentTransaction fragmentTransaction = myActivity.getSupportFragmentManager().beginTransaction();
-                selectedRestaurantViewFragment.setArguments(adapterPositionBundle);
-                fragmentTransaction.replace(R.id.fragment_container_home, selectedRestaurantViewFragment);
+                selectedMealFragmente.setArguments(adapterPositionBundle);
+                fragmentTransaction.replace(R.id.fragment_container_home, selectedMealFragmente);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
@@ -71,42 +81,44 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.Restau
 
 
     @Override
-    public void onBindViewHolder(RestaurantViewHolder holder, final int position) {
-        if (mRestaurants != null) {
-            Restaurant current = mRestaurants.get(position);
-            holder.nameItemView.setText(current.getRestaurantName());
-            holder.howGoodItemView.setText(current.getHowGoodIsTheRestaurant());
-            holder.commentaryItemView.setText(current.getRestaurantCommentary());
+    public void onBindViewHolder(MealViewHolder holder, final int position) {
+        if (mMeal != null) {
+            Meal current = mMeal.get(position);
+            holder.mealId.setText(current.getMealName());
+            holder.mealPrice.setText(current.getPrice());
+            holder.mealPlace.setText(current.getMealPlace());
+            holder.howGoodMealView.setText(current.getHowGoodIsTheMeal());
+            holder.commentaryMealView.setText(current.getMealCommentary());
 
-            switch (current.getHowGoodIsTheRestaurant()) {
-                case HowGoodWasTheRestaurantDescriptor.GOOD:
-                    holder.howGoodItemView.setTextColor(Color.parseColor("#00b015"));
+            switch (current.getHowGoodIsTheMeal()) {
+                case HowGoodWasTheMealDescriptor.GOOD:
+                    holder.howGoodMealView.setTextColor(Color.parseColor("#00b015"));
                     break;
-                case HowGoodWasTheRestaurantDescriptor.OK:
-                    holder.howGoodItemView.setTextColor(Color.parseColor("#ff9e00"));
+                case HowGoodWasTheMealDescriptor.OK:
+                    holder.howGoodMealView.setTextColor(Color.parseColor("#ff9e00"));
                     break;
-                case HowGoodWasTheRestaurantDescriptor.BAD:
-                    holder.howGoodItemView.setTextColor(Color.parseColor("#ee1010"));
+                case HowGoodWasTheMealDescriptor.BAD:
+                    holder.howGoodMealView.setTextColor(Color.parseColor("#ee1010"));
                     break;
             }
         } else {
-            holder.nameItemView.setText("");
+            holder.mealId.setText("");
         }
     }
 
-    public void setRestaurants(List<Restaurant> restaurants){
-        mRestaurants = restaurants;
+    public void setMeals(List<Meal> meals){
+        mMeal = meals;
         notifyDataSetChanged();
     }
 
-    public List<Restaurant> getmRestaurants() {
-        return mRestaurants;
+    public List<Meal> getmMeal() {
+        return mMeal;
     }
 
     @Override
     public int getItemCount() {
-        if (mRestaurants != null)
-            return mRestaurants.size();
+        if (mMeal != null)
+            return mMeal.size();
         else return 0;
     }
 }

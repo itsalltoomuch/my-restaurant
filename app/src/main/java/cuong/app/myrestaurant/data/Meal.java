@@ -11,22 +11,28 @@ public class Meal {
     @PrimaryKey (autoGenerate = true)
     @ColumnInfo (name="meal_id")
     private int id;
-
     @NonNull
     @ColumnInfo (name="meal_name")
     private String mealName;
+    @NonNull
+    @ColumnInfo (name="mealprice")
+    private String price;
+    @NonNull
+    @ColumnInfo (name = "howgood")
+    private String howGoodIsTheMeal;
+    @NonNull
+    @ColumnInfo (name = "commentary")
+    private String MealCommentary;
+    @NonNull
+    @ColumnInfo (name="mealplace")
+    private String mealPlace;
 
-    @ColumnInfo (name="booking_id")
-    private int bookingId;
-
-    @ColumnInfo (name="restaurant_id")
-    private int restaurantId;
-
-    public Meal(int id, @NonNull String mealName, int bookingId, int restaurantId) {
-        this.id = id;
+    public Meal(@NonNull String mealName,@NonNull String price,@NonNull String howGoodIsTheMeal,@NonNull String MealCommentary,@NonNull String mealPlace) {
         this.mealName = mealName;
-        this.bookingId = bookingId;
-        this.restaurantId = restaurantId;
+        this.price = price;
+        this.howGoodIsTheMeal = howGoodIsTheMeal;
+        this.MealCommentary = MealCommentary;
+        this.mealPlace = mealPlace;
     }
 
     public int getId() {
@@ -45,20 +51,30 @@ public class Meal {
     public void setMealName(@NonNull String mealName) {
         this.mealName = mealName;
     }
-
-    public int getBookingId() {
-        return bookingId;
+    @NonNull
+    public String getPrice() {
+        return price;
     }
 
-    public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
+    public void setPrice(@NonNull String price) {
+        this.price = price;
     }
 
-    public int getRestaurantId() {
-        return restaurantId;
+    @NonNull
+    public String getHowGoodIsTheMeal() { return howGoodIsTheMeal; }
+
+    public void setHowGoodIsTheMeal(@NonNull String howGoodIsTheMeal) { this.howGoodIsTheMeal = howGoodIsTheMeal; }
+
+    @NonNull
+    public String getMealCommentary() { return MealCommentary; }
+
+    public void setMealCommentary(@NonNull String MealCommentary) { this.MealCommentary = MealCommentary; }
+
+    @NonNull
+    public String getMealPlace() { return mealPlace; }
+
+    public void setMealPlace(@NonNull String mealPlace) {
+        this.mealPlace = mealPlace;
     }
 
-    public void setRestaurantId(int restaurantId) {
-        this.restaurantId = restaurantId;
-    }
 }
