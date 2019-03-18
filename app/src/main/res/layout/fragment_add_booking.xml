@@ -1,96 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.bookings.AddBookingFragment">
+    android:background="#ffffff">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/enter_restaurant_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:labelFor="@+id/restaurant_name_form"
-        android:text="@string/form_enter_restaurant_name" />
-
-    <EditText
-        android:id="@+id/booking_name_form"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_below="@+id/enter_restaurant_name"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:inputType="textCapSentences|textAutoCorrect" />
-
-    <TextView
-        android:id="@+id/book_time"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="95dp"
-        android:labelFor="@+id/the_time"
-        android:text="@string/enter_the_book_time" />
-    <EditText
-        android:id="@+id/the_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
-        android:ems="10"
-        android:labelFor="@+id/enter_the_time"
-        android:layout_centerHorizontal="true"
-        android:inputType="time" />
-    <TextView
-        android:id="@+id/book_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="155dp"
-        android:labelFor="@+id/the_date"
-        android:text="@string/enter_the_book_date" />
-    <EditText
-        android:id="@+id/the_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="170dp"
-        android:ems="10"
-        android:labelFor="@+id/enter_the_date"
-        android:layout_centerHorizontal="true" />
+        android:padding="20dp"
+        tools:context=".ui.fragments.bookings.AddBookingFragment">
+
+        <TextView
+            android:id="@+id/enter_restaurant_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:labelFor="@+id/restaurant_name_form"
+            android:text="@string/form_enter_restaurant_name"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/booking_name_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/enter_restaurant_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textCapSentences|textAutoCorrect"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enter_restaurant_name" />
+
+        <TextView
+            android:id="@+id/book_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:labelFor="@+id/the_time"
+            android:text="@string/enter_the_book_time"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/booking_name_form" />
+
+        <EditText
+            android:id="@+id/the_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:ems="10"
+            android:focusableInTouchMode="false"
+            android:inputType="time"
+            android:labelFor="@+id/enter_the_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/book_time" />
+
+        <TextView
+            android:id="@+id/book_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:labelFor="@+id/the_date"
+            android:text="@string/enter_the_book_date"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/the_time" />
+
+        <EditText
+            android:id="@+id/the_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:ems="10"
+            android:focusableInTouchMode="false"
+            android:inputType="date"
+            android:labelFor="@+id/enter_the_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/book_date" />
+
+        <TextView
+            android:id="@+id/the_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:labelFor="@+id/booking_address_form"
+            android:text="@string/form_enter_restaurant_postcode"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/the_date" />
+
+        <EditText
+            android:id="@+id/booking_address_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textCapSentences|textAutoCorrect"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/the_address" />
 
 
-    <TextView
-        android:id="@+id/the_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="220dp"
-        android:labelFor="@+id/booking_address_form"
-        android:text="@string/form_enter_restaurant_postcode" />
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="190dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/commentary_text_form"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/booking_address_form" />
+    </android.support.constraint.ConstraintLayout>
 
-    <EditText
-        android:id="@+id/booking_address_form"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_below="@+id/enter_restaurant_postcode"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="210dp"
-        android:ems="10"
-        android:inputType="textCapSentences|textAutoCorrect" />
-
-
-    <Button
-        android:id="@+id/button_save"
-        android:layout_marginTop="300dp"
-        android:layout_width="190dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/commentary_text_form"
-        android:layout_centerHorizontal="true"
-        android:text="@string/save" />
-
-
-</FrameLayout>
+</ScrollView>

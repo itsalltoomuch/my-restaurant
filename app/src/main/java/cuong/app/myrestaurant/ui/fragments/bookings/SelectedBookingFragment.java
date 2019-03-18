@@ -1,7 +1,9 @@
 package cuong.app.myrestaurant.ui.fragments.bookings;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +13,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +30,7 @@ public class SelectedBookingFragment extends Fragment  {
     DataCommunication mCallback;
     private TextView restaurantName, date, time, address;
     private ImageButton deleteButton;
+    private Button btnCall;
     private int position;
     BookingListAdapter resListAdapter;
     List<Booking> listOfBookings;
@@ -72,6 +76,15 @@ public class SelectedBookingFragment extends Fragment  {
         time.setText(selectedBooking.getTime());
         address.setText(selectedBooking.getAddress());
 
+        btnCall = selectedBookView.findViewById(R.id.call_restaurant);
+        btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent call = new Intent(Intent.ACTION_DIAL);
+                call.setData(Uri.parse("tel:000"));
+                startActivity(call);
+            }
+        });
 
 
         return selectedBookView;

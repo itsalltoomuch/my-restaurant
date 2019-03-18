@@ -30,6 +30,7 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
         private final TextView tvTime;
         private final TextView tvAddress;
         private ImageButton selected_item;
+        private View container;
 
         private BookingViewHolder(View itemView) {
             super(itemView);
@@ -37,7 +38,8 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
             tvDate = itemView.findViewById(R.id.tv_date);
             tvTime = itemView.findViewById(R.id.tv_time);
             tvAddress = itemView.findViewById(R.id.tv_address);
-            selected_item = itemView.findViewById(R.id.select_restaurant);
+            selected_item = itemView.findViewById(R.id.select_booking);
+            container = itemView.findViewById(R.id.card_view);
         }
     }
 
@@ -56,7 +58,7 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
         View itemView = LayoutInflater.from(mContext).inflate(R.layout.layout_booking_item, parent, false);
         final BookingViewHolder rHolder = new BookingViewHolder(itemView);
 
-        rHolder.selected_item.setOnClickListener(new View.OnClickListener() {
+        rHolder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 adapterPosition = rHolder.getAdapterPosition();

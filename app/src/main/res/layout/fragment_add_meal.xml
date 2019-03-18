@@ -1,148 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/enter_dish_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:labelFor="@+id/dish_name_form"
-        android:text="@string/form_enter_dish_name" />
-
-    <EditText
-        android:id="@+id/dish_name_form"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/enter_dish_name"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:inputType=
-            "textCapSentences|textAutoCorrect" />
-
-    <TextView
-        android:id="@+id/rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="92dp"
-        android:text="@string/form_choose_quality"/>
-
-    <RadioGroup
-        android:id="@+id/how_good_radio_group"
-        android:layout_width="206dp"
-        android:layout_height="142dp"
-        android:layout_marginTop="120dp"
-
-        android:layout_below="@+id/how_good"
-        android:layout_centerHorizontal="true">
-
-        <RadioButton
-            android:id="@+id/radioButtonVeryGood"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/very_good" />
-
-        <RadioButton
-            android:id="@+id/radioButtonOK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/ok" />
-
-        <RadioButton
-            android:id="@+id/radioButtonBad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/really_bad" />
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/commentary_form"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="262dp"
-        android:labelFor="@+id/meal_comment"
-        android:text="@string/commentary_form" />
-
-    <EditText
-        android:id="@+id/meal_comment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/commentary_form"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:inputType=
-            "textCapSentences|textAutoCorrect|textMultiLine"
-        android:lines="3"/>
-
-    <TextView
-        android:id="@+id/place_have_it"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="400dp"
-        android:labelFor="@+id/address"
-        android:text="@string/place_have_the_meal" />
-
-    <EditText
-        android:id="@+id/address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/place_have_it"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:inputType=
-            "textCapSentences|textAutoCorrect|textMultiLine"
-        android:lines="3"/>
-
-    <TextView
-        android:id="@+id/meal_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="500dp"
-        android:labelFor="@+id/price"
-        android:text="@string/meal_price" />
-    <EditText
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/meal_price"
-        android:ems="10"
-        android:layout_centerHorizontal="true"
-        android:inputType=
-            "textCapSentences|textAutoCorrect|textMultiLine"
-        android:lines="3"/>
-
-
-    <Button
-        android:id="@+id/button_save"
-        android:layout_width="190dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/price"
-        android:layout_centerHorizontal="true"
-        android:text="@string/save" />
-
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/enter_dish_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:labelFor="@+id/dish_name_form"
+            android:text="@string/form_enter_dish_name" />
+
+        <EditText
+            android:id="@+id/dish_name_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/enter_dish_name"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:inputType="textCapSentences|textAutoCorrect" />
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="92dp"
+            android:text="@string/form_choose_quality" />
+
+        <RadioGroup
+            android:id="@+id/how_good_radio_group"
+            android:layout_width="206dp"
+            android:layout_height="142dp"
+            android:layout_below="@+id/how_good"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120dp">
+
+            <RadioButton
+                android:id="@+id/radioButtonVeryGood"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/very_good" />
+
+            <RadioButton
+                android:id="@+id/radioButtonOK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/ok" />
+
+            <RadioButton
+                android:id="@+id/radioButtonBad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/really_bad" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/commentary_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="262dp"
+            android:labelFor="@+id/meal_comment"
+            android:text="@string/commentary_form" />
+
+        <EditText
+            android:id="@+id/meal_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/commentary_form"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
+            android:lines="3" />
+
+        <TextView
+            android:id="@+id/place_have_it"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="400dp"
+            android:labelFor="@+id/address"
+            android:text="@string/place_have_the_meal" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/place_have_it"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:inputType="textCapSentences|textAutoCorrect"
+            android:lines="3" />
+
+        <TextView
+            android:id="@+id/meal_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="500dp"
+            android:labelFor="@+id/price"
+            android:text="@string/meal_price" />
+
+        <EditText
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/meal_price"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:lines="3" />
 
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="190dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/price"
+            android:layout_centerHorizontal="true"
+            android:text="@string/save" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+
+    </RelativeLayout>
+</ScrollView>

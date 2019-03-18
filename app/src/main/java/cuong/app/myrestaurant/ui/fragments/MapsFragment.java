@@ -62,6 +62,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Cracow, 12));
 
         resListAdapter = mCallback.getRestaurantListAdapter();
+        if(resListAdapter == null) return;
 
         listOfRestaurants = resListAdapter.getmRestaurants();
 

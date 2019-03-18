@@ -32,6 +32,7 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MealVi
         private final TextView howGoodMealView;
         private final TextView commentaryMealView;
         private ImageButton selected_item;
+        private View container;
 
         private MealViewHolder(View itemView) {
             super(itemView);
@@ -42,6 +43,7 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MealVi
             commentaryMealView = itemView.findViewById(R.id.mealcomment);
 
             selected_item = itemView.findViewById(R.id.select_restaurant);
+            container = itemView.findViewById(R.id.card_view);
         }
     }
 
@@ -60,7 +62,7 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MealVi
         View itemView = LayoutInflater.from(mContext).inflate(R.layout.layout_meal_item, parent, false);
         final MealViewHolder rHolder = new MealViewHolder(itemView);
 
-        rHolder.selected_item.setOnClickListener(new View.OnClickListener() {
+        rHolder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 adapterPosition = rHolder.getAdapterPosition();

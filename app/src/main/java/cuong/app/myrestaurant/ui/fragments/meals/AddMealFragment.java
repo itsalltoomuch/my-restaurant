@@ -108,16 +108,16 @@ public class AddMealFragment extends Fragment implements View.OnClickListener {
             mCallback.setMealComment(MealComment);
             mCallback.setPrice(price);
             mCallback.setPlace(place);
-        }
-        new SaveToDatabaseAsync().execute();
 
-        AddMealFragment addMealFragment = new AddMealFragment();
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container_home, addMealFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-        Toast.makeText(getContext(),"Added successfully", Toast.LENGTH_SHORT).show();
-        saveButton.setEnabled(false);
+            new SaveToDatabaseAsync().execute();
+
+            MealsFragment mealFragment = new MealsFragment();
+            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container_home, mealFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+            Toast.makeText(getContext(),"Added successfully", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void showAlert() {

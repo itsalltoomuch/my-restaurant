@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="#ffffff"
     tools:context=".ui.fragments.bookings.SelectedBookingFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-
 
     <TextView
         android:id="@+id/book_restaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:padding="2dp"
+        android:text="Booking"
         android:textColor="@color/darkGrey"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,42 +25,45 @@
         android:id="@+id/booking_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:padding="2dp"
+        android:text="time"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_name" />
+        app:layout_constraintTop_toBottomOf="@+id/book_restaurant" />
 
     <TextView
         android:id="@+id/booking_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:padding="2dp"
+        android:text="Date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/booking_time" />
+
     <TextView
         android:id="@+id/restaurant_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:padding="2dp"
+        android:text="address"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/booking_date" />
-
 
     <ImageButton
         android:id="@+id/delete_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="50dp"
-        android:background="?android:selectableItemBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_gravity="right"
+        android:layout_marginEnd="8dp"
+        android:background="?android:selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/call_restaurant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/call_restaurant"
         app:srcCompat="@drawable/ic_delete_black_24dp" />
 
     <Button
@@ -68,5 +71,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:text="Call" />
-</FrameLayout>
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="Call"
+        app:layout_constraintEnd_toStartOf="@+id/delete_button"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_address" />
+
+
+</android.support.constraint.ConstraintLayout>
